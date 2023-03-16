@@ -19,7 +19,7 @@ exporters:
 service:
   pipelines:
     traces:
-      receivers: [otlp]
+      receivers: [otlp, tailtracer]
       processors: []
       exporters: [jaeger, logging]
   telemetry:
