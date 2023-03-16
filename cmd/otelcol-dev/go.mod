@@ -5,7 +5,7 @@ module go.opentelemetry.io/collector/cmd/builder
 go 1.19
 
 require (
-	github.com/imp20052904/otel-collector-dev/receiver/tailtracer v0.0.0-20230316091526-5a587af27124
+	github.com/imp20052904/otel-collector-dev/receiver/tailtracer v0.1.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/jaegerexporter v0.73.0
 	github.com/stretchr/testify v1.8.2
 	go.opentelemetry.io/collector v0.73.0
@@ -96,3 +96,5 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
+
+replace github.com/imp20052904/otel-collector-dev/receiver/tailtracer => ../../receiver/tailtracer
