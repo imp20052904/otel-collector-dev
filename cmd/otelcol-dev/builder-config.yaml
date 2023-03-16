@@ -18,3 +18,5 @@ processors:
 receivers:
   - gomod:
       go.opentelemetry.io/collector/receiver/otlpreceiver v0.73.0
+  - gomod:
+      github.com/imp20052904/otel-collector-dev/receiver/tailtracer v0.0.0-20230316091526-5a587af27124

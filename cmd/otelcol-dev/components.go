@@ -13,6 +13,7 @@ import (
 	jaegerexporter "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/jaegerexporter"
 	batchprocessor "go.opentelemetry.io/collector/processor/batchprocessor"
 	otlpreceiver "go.opentelemetry.io/collector/receiver/otlpreceiver"
+	tailtracer "github.com/imp20052904/otel-collector-dev/receiver/tailtracer"
 )
 
 func components() (otelcol.Factories, error) {
@@ -27,6 +28,7 @@ func components() (otelcol.Factories, error) {
 
 	factories.Receivers, err = receiver.MakeFactoryMap(
 		otlpreceiver.NewFactory(),
+		tailtracer.NewFactory(),
 	)
 	if err != nil {
 		return otelcol.Factories{}, err
