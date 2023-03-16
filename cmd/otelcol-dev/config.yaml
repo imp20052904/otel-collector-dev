@@ -2,10 +2,10 @@ receivers:
   otlp:
     protocols:
       grpc:
-  receivers:
-    tailtracer: # this line represents the ID of your receiver
-      interval: 1m
-      number_of_traces: 1
+#  receivers:
+#    tailtracer: # this line represents the ID of your receiver
+#      interval: 1m
+#      number_of_traces: 1
 
 processors:
 
