@@ -30,6 +30,7 @@ func (ttr *tailtracerReceiver) Start(ctx context.Context, host component.Host) e
 			select {
 			case <-ticker.C:
 				ttr.logger.Info("I should start processing traces now!")
+				ttr.nextConsumer.ConsumeTraces(ctx, generateTraces(ttr.config.NumberOfTraces))
 			case <-ctx.Done():
 				return
 			}

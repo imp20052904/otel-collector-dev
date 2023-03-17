@@ -3,10 +3,11 @@ receivers:
     protocols:
       grpc:
   tailtracer: # this line represents the ID of your receiver
-    interval: 1m
+    interval: 15s
     number_of_traces: 1
 
 processors:
+  batch:
 
 exporters:
   logging:
@@ -16,12 +17,17 @@ exporters:
     tls:
       insecure: true
 
+extensions:
+  zpages:
+    endpoint: :55679
+
 service:
+  extensions: [zpages]
   pipelines:
     traces:
       receivers: [otlp, tailtracer]
-      processors: []
+      processors: [batch]
       exporters: [jaeger, logging]
   telemetry:
     logs:
-      level: debug
+      level: info

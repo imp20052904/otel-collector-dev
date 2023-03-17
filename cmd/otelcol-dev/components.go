@@ -11,7 +11,9 @@ import (
 	"go.opentelemetry.io/collector/receiver"
 	loggingexporter "go.opentelemetry.io/collector/exporter/loggingexporter"
 	jaegerexporter "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/jaegerexporter"
+	zpagesextension "go.opentelemetry.io/collector/extension/zpagesextension"
 	batchprocessor "go.opentelemetry.io/collector/processor/batchprocessor"
+	memorylimiterprocessor "go.opentelemetry.io/collector/processor/memorylimiterprocessor"
 	otlpreceiver "go.opentelemetry.io/collector/receiver/otlpreceiver"
 	tailtracer "github.com/imp20052904/otel-collector-dev/receiver/tailtracer"
 )
@@ -21,6 +23,7 @@ func components() (otelcol.Factories, error) {
 	factories := otelcol.Factories{}
 
 	factories.Extensions, err = extension.MakeFactoryMap(
+		zpagesextension.NewFactory(),
 	)
 	if err != nil {
 		return otelcol.Factories{}, err
@@ -44,6 +47,7 @@ func components() (otelcol.Factories, error) {
 
 	factories.Processors, err = processor.MakeFactoryMap(
 		batchprocessor.NewFactory(),
+		memorylimiterprocessor.NewFactory(),
 	)
 	if err != nil {
 		return otelcol.Factories{}, err
